@@ -1,0 +1,83 @@
+@use '../src/fluid-calculator' as calculator; // Import the calculator functions and mixins
+
+/*
+ * Test Mixins
+*/
+
+// Calculate fluid typography scale
+:root {
+	@include calculator.generateFluidScale(
+		(
+			'minWidth': 320,
+			'maxWidth': 1366,
+			'minSize': 10,
+			'maxSize': 20,
+			'minScale': 1.2,
+			'maxScale': 1.5,
+			'positiveSteps': 5,
+			'negativeSteps': 2,
+			/* Optional params */
+      'prefix': 'text-',
+		)
+	);
+}
+
+:root {
+	/* Calculate Spacing Variables */
+	@include calculator.generateFluidScale(
+		(
+			'minWidth': 320,
+			'maxWidth': 1366,
+			'minSize': 10,
+			'maxSize': 20,
+			'minScale': 1.2,
+			'maxScale': 1.5,
+			'positiveSteps': 5,
+			'negativeSteps': 2,
+			/* Optional params */
+      'minBaseMultiplier': 2,
+			'maxBaseMultiplier': 3,
+			'prefix': 'space-',
+		)
+	);
+}
+
+/*
+ * Test Functions
+*/
+
+// calculate single clamp
+$clamp: calculator.calculateClamp(
+	(
+		'minWidth': 320,
+		'maxWidth': 1240,
+		'minSize': 16,
+		'maxSize': 48,
+		/* Optional params */
+    'usePx': true,
+		'relativeTo': 'container',
+	)
+);
+
+// calculate multiple clamps
+$clamps: calculator.calculateClamps(
+	(
+		'minWidth': 320,
+		'maxWidth': 1240,
+		'pairs': (
+			(16, 48),
+			(40, 18),
+		),
+		/* Optional params */
+    'usePx': true,
+		'relativeTo': 'container',
+	)
+);
+
+// Output CSS variables for clamp
+:root {
+	--clamp: #{$clamp};
+	@each $clamp in $clamps {
+		--#{map-get($clamp, "label")}: #{map-get($clamp, 'clamp')};
+	}
+}

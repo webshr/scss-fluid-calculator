@@ -1,0 +1,22 @@
+{
+	"name": "@webshr/scss-fluid-calculator",
+	"version": "0.1.1",
+	"description": "A SCSS utility for calculating fluid typography and spacing based on https://utopia.fyi/.",
+	"author": "H.Liebel",
+	"license": "GPL-2.0-or-later",
+	"main": "src/fluid-calculator.scss",
+	"style": "src/fluid-calculator.scss",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/webshr/scss-fluid-calculator.git"
+	},
+	"scripts": {
+		"test": "sass test/style.scss dist/style.css"
+	},
+	"devDependencies": {
+		"sass": "^1.77.8"
+	},
+	"credits": {
+		"utopia-core-scss": "https://github.com/trys/utopia-core-scss"
+	}
+}
